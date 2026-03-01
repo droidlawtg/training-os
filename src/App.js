@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useMemo } from "react";
 
 // ─── THEME ────────────────────────────────────────────────────────────────────
 const T = {
@@ -363,7 +363,7 @@ function MacroBar({ label, current, target, color }) {
 
 // ─── TAB: TODAY ───────────────────────────────────────────────────────────────
 function TodayTab({ startDate }) {
-  const today = new Date();
+  const today = useMemo(() => new Date(), []);
   const info = getWeekInfo(today, startDate);
   const workout = getTodayWorkout(today, startDate);
   const todayKey = dk(today);
@@ -385,6 +385,7 @@ function TodayTab({ startDate }) {
       else break;
     }
     setStreak(s);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [today]);
 
