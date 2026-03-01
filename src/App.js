@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect } from "react";
 
 // ─── THEME ────────────────────────────────────────────────────────────────────
 const T = {
@@ -385,7 +385,8 @@ function TodayTab({ startDate }) {
       else break;
     }
     setStreak(s);
-  }, []);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [today]);
 
   const prevSameWorkout = (() => {
     if (!info) return null;
@@ -922,6 +923,7 @@ function BodyStatsTab() {
     setWeight(dayStats.weight || "");
     setSleepScore(dayStats.sleepScore || "");
     setSteps(dayStats.steps || "");
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [selDate]);
 
   function saveDay() {
